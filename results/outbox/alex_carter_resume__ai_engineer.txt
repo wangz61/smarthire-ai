@@ -1,0 +1,11 @@
+To: you+alex@example.com
+Subject: Your AI Engineer application at SmartHire
+
+Hi Alex,
+
+Thank you for your interest in the AI Engineer position at SmartHire and for the time you spent on your application. After careful review, we have decided not to move forward with your application for this role, as other candidates more closely match its current requirements.
+
+We appreciate your interest in SmartHire and wish you every success in your search.
+
+Best regards,
+SmartHire Recruiting Team

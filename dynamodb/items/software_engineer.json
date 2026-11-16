@@ -1,0 +1,43 @@
+{
+  "position": {
+    "S": "software_engineer"
+  },
+  "title": {
+    "S": "Software Engineer"
+  },
+  "min_years": {
+    "N": "3"
+  },
+  "mandatory": {
+    "L": [
+      {
+        "S": "3+ years of relevant experience"
+      }
+    ]
+  },
+  "requirements": {
+    "L": [
+      {
+        "S": "Bachelor's degree in Computer Science or related field"
+      },
+      {
+        "S": "Proficiency in Python, JavaScript, or similar languages"
+      },
+      {
+        "S": "Experience with SQL and databases"
+      },
+      {
+        "S": "Familiarity with cloud platforms (AWS/GCP/Azure)"
+      },
+      {
+        "S": "Experience with Git / version control"
+      },
+      {
+        "S": "Strong communication skills"
+      }
+    ]
+  },
+  "pass_threshold": {
+    "N": "70"
+  }
+}
