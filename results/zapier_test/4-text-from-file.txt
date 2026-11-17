@@ -1,0 +1,11 @@
+Step 4 (Files by Zapier, Text From File): File Type = docx, Output Mime Type = text/markdown
+Text = (full text in results/zapier_text/alex_markdown.txt), begins:
+__Alex Carter__
+
+Software Engineer
+
+alex\.carter\.dev@example\.com  |  Redmond, WA, USA
+
+__SUMMARY__
+
+Software Engineer with 7\+ years of experience in backend and full\-stack development\. ...

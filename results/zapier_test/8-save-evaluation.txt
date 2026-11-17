@@ -1,0 +1,6 @@
+Step 8 (Code by Zapier, save_evaluation.py -> DynamoDB PutItem, SigV4):
+Saved              true
+Table              smarthire_evaluations
+Submission Id      ACYDBNhrsvEdtR7E42wzsuUvAmasK0ieDYnpQiFdNiKR1Dmu1zMozNcodQJ9fpyAVkE74vc
+Attributes         10
+Runtime Meta Duration Ms   166

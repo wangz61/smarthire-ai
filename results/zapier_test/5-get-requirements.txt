@@ -1,0 +1,15 @@
+Step 5 (Code by Zapier, get_requirements.py -> DynamoDB GetItem, SigV4):
+Position           software_engineer
+Title              Software Engineer
+Min Years          3
+Pass Threshold     70
+Mandatory          3+ years of relevant experience
+Requirements Block
+1. [MANDATORY] 3+ years of relevant experience
+2. Bachelor's degree in Computer Science or related field
+3. Proficiency in Python, JavaScript, or similar languages
+4. Experience with SQL and databases
+5. Familiarity with cloud platforms (AWS/GCP/Azure)
+6. Experience with Git / version control
+7. Strong communication skills
+Runtime Meta Duration Ms   193

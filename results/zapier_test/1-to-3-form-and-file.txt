@@ -1,0 +1,9 @@
+Step 1 (Google Forms, New Form Response): Full name = Alex Carter, Position = Software Engineer,
+  Resume = https://drive.google.com/open?id=1MvQwNr30qZT_sIBjBUuV4tHokGjut5LM
+Step 2 (Formatter, Extract Pattern):  Output 0 = 1MvQwNr30qZT_sIBjBUuV4tHokGjut5LM  (matched, start 33, end 66)
+Step 3 (Google Drive, Retrieve File by ID):
+  Title         = hw0-09_alex_carter_resume - Zihao Wang.docx
+  Mime Type     = application/vnd.openxmlformats-officedocument.wordprocessingml.document
+  File Size     = 9882
+  File          = hydrate|||... (file object passed to step 4)
+  Zap Search Was Found Status = true

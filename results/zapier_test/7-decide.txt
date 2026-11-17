@@ -1,0 +1,21 @@
+Step 7 (Code by Zapier, decide.py):
+Decision           advance
+Score              100
+Llm Score          98
+Llm Recommendation advance
+Mandatory Met      true
+Timeline Flag      true
+Concerns           Timeline: 7+ years of experience claimed, but bachelor's degree completed in 2024; experience may have started before or during degree
+Summary            Alex Carter meets all requirements with strong evidence of relevant experience and skills. Timeline inconsistency should be verified in interview.
+Email Subject      Next steps for your Software Engineer application at SmartHire
+Email Body
+Hi Alex,
+
+Thank you for applying for the Software Engineer position at SmartHire. We have reviewed your resume and would like to invite you to the next round of interviews. One highlight from your application: Extensive experience (7+ years) in relevant software engineering roles.
+
+Our recruiting team will contact you within the next few days to schedule a call.
+
+Best regards,
+SmartHire Recruiting Team
+Runtime Meta Duration Ms   69
+(This run was before the fix that stops the timeline concern being listed twice.)

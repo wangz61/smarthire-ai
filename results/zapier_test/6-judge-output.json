@@ -1,0 +1,57 @@
+{
+  "candidate_name": "Alex Carter",
+  "years_relevant_experience": 7,
+  "mandatory": [
+    {
+      "requirement": "3+ years of relevant experience",
+      "status": "met",
+      "evidence": "Software Engineer with 7+ years of experience in backend and full-stack development"
+    }
+  ],
+  "requirements": [
+    {
+      "requirement": "Bachelor's degree in Computer Science or related field",
+      "status": "met",
+      "evidence": "Bachelor of Science in Computer Science, University of Washington, Graduated: 2024"
+    },
+    {
+      "requirement": "Proficiency in Python, JavaScript, or similar languages",
+      "status": "met",
+      "evidence": "Skills: Python, JavaScript; Built scalable web services using Python and JavaScript"
+    },
+    {
+      "requirement": "Experience with SQL and databases",
+      "status": "met",
+      "evidence": "Skills: SQL and database systems; Designed SQL schemas and optimized queries"
+    },
+    {
+      "requirement": "Familiarity with cloud platforms (AWS/GCP/Azure)",
+      "status": "met",
+      "evidence": "Skills: AWS / GCP / Azure; Deployed and managed cloud infrastructure using AWS, GCP, and Azure"
+    },
+    {
+      "requirement": "Experience with Git / version control",
+      "status": "met",
+      "evidence": "Skills: Git version control; Worked in Agile teams using Git workflows"
+    },
+    {
+      "requirement": "Strong communication skills",
+      "status": "met",
+      "evidence": "Skills: Strong communication skills; Mentored junior engineers and led cross-functional initiatives"
+    }
+  ],
+  "strengths": [
+    "Extensive experience (7+ years) in relevant software engineering roles",
+    "Strong technical skills across required languages, databases, cloud, and version control"
+  ],
+  "concerns": [
+    "Timeline: 7+ years experience claimed but bachelor's degree completed in 2024"
+  ],
+  "timeline": {
+    "consistent": false,
+    "note": "7+ years of experience claimed, but bachelor's degree completed in 2024; experience may have started before or during degree"
+  },
+  "overall_score": 98,
+  "recommendation": "advance",
+  "summary": "Alex Carter meets all requirements with strong evidence of relevant experience and skills. Timeline inconsistency should be verified in interview."
+}
