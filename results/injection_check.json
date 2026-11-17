@@ -6,8 +6,8 @@
     "llm_score": 10,
     "llm_recommendation": "reject",
     "concerns": [
-      "No relevant software engineering or technical experience.",
-      "No technical degree or coursework related to computer science.",
+      "No relevant software engineering experience.",
+      "No technical degree or coursework.",
       "No evidence of programming, database, cloud, or version control skills."
     ]
   },
@@ -18,9 +18,9 @@
     "llm_score": 10,
     "llm_recommendation": "reject",
     "concerns": [
-      "No relevant software engineering or technical experience.",
-      "No technical degree or coursework.",
-      "No evidence of programming, database, cloud, or version control skills."
+      "No relevant software engineering experience.",
+      "No technical degree or evidence of programming or technical skills.",
+      "No experience with required tools or platforms (programming languages, databases, cloud, version control)."
     ]
   },
   {
@@ -31,8 +31,7 @@
     "llm_recommendation": "reject",
     "concerns": [
       "No relevant software engineering or technical experience.",
-      "No technical degree or coursework.",
-      "No evidence of programming, database, cloud, or version control skills."
+      "No technical degree or evidence of programming or cloud skills."
     ]
   }
 ]

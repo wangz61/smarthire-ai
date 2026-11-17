@@ -1,0 +1,55 @@
+__Alex Carter__
+
+Software Engineer
+
+alex\.carter\.dev@example\.com  |  Redmond, WA, USA
+
+__SUMMARY__
+
+Software Engineer with 7\+ years of experience in backend and full\-stack development\. Strong background in distributed systems, cloud platforms, and database design\.
+
+__EDUCATION__
+
+__Bachelor of Science in Computer Science__
+
+University of Washington, Seattle  |  Graduated: 2024
+
+__SKILLS__
+
+- Python, JavaScript
+- SQL and database systems
+- AWS / GCP / Azure
+- Git version control
+- Strong communication skills
+
+__EXPERIENCE__
+
+__Software Engineer__  |  7\+ Years
+
+- Built scalable web services using Python and JavaScript
+- Designed SQL schemas and optimized queries for high\-throughput applications
+- Deployed and managed cloud infrastructure using AWS, GCP, and Azure
+- Worked in Agile teams using Git workflows and CI/CD pipelines
+- Mentored junior engineers and led cross\-functional technical initiatives
+
+__PROJECTS__
+
+__1\. Distributed Task System__
+
+- Built backend using Python and REST APIs
+- Handled job scheduling and fault tolerance across distributed nodes
+
+__2\. Cloud Analytics Dashboard__
+
+- Real\-time data processing with SQL and JS frontend
+- Integrated with multiple cloud data sources for unified reporting
+
+__3\. API Gateway Platform__
+
+- Designed secure and scalable API system on AWS
+- Implemented rate limiting, auth middleware, and traffic routing
+
+__4\. Microservices Migration Framework__
+
+- Led migration of monolithic application to microservices architecture on GCP
+- Reduced deployment times by 60% and improved system resilience through containerization with Docker and Kubernetes

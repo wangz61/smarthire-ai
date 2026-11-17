@@ -5,10 +5,10 @@
     "position": "Software Engineer",
     "decision": "advance",
     "score": 100,
-    "llm_score": 90,
+    "llm_score": 100,
     "llm_recommendation": "advance",
     "mandatory_met": true,
-    "tokens": 1527
+    "tokens": 1622
   },
   {
     "run": 1,
@@ -19,7 +19,7 @@
     "llm_score": 35,
     "llm_recommendation": "reject",
     "mandatory_met": false,
-    "tokens": 1684
+    "tokens": 1812
   },
   {
     "run": 1,
@@ -30,7 +30,7 @@
     "llm_score": 5,
     "llm_recommendation": "reject",
     "mandatory_met": false,
-    "tokens": 1454
+    "tokens": 1547
   },
   {
     "run": 1,
@@ -41,7 +41,7 @@
     "llm_score": 5,
     "llm_recommendation": "reject",
     "mandatory_met": false,
-    "tokens": 1608
+    "tokens": 1703
   },
   {
     "run": 2,
@@ -49,10 +49,10 @@
     "position": "Software Engineer",
     "decision": "advance",
     "score": 100,
-    "llm_score": 92,
+    "llm_score": 100,
     "llm_recommendation": "advance",
     "mandatory_met": true,
-    "tokens": 1529
+    "tokens": 1623
   },
   {
     "run": 2,
@@ -63,62 +63,62 @@
     "llm_score": 35,
     "llm_recommendation": "reject",
     "mandatory_met": false,
-    "tokens": 1679
+    "tokens": 1776
   },
   {
     "run": 2,
     "name": "John W. Smith",
     "position": "Software Engineer",
     "decision": "reject",
-    "score": 7,
-    "llm_score": 5,
-    "llm_recommendation": "reject",
-    "mandatory_met": false,
-    "tokens": 1447
-  },
-  {
-    "run": 2,
-    "name": "John W. Smith",
-    "position": "AI Engineer",
-    "decision": "reject",
-    "score": 6,
-    "llm_score": 5,
-    "llm_recommendation": "reject",
-    "mandatory_met": false,
-    "tokens": 1615
-  },
-  {
-    "run": 3,
-    "name": "Alex Carter",
-    "position": "Software Engineer",
-    "decision": "advance",
-    "score": 100,
-    "llm_score": 95,
-    "llm_recommendation": "advance",
-    "mandatory_met": true,
-    "tokens": 1534
-  },
-  {
-    "run": 3,
-    "name": "Alex Carter",
-    "position": "AI Engineer",
-    "decision": "reject",
-    "score": 50,
-    "llm_score": 35,
-    "llm_recommendation": "reject",
-    "mandatory_met": false,
-    "tokens": 1674
-  },
-  {
-    "run": 3,
-    "name": "John W. Smith",
-    "position": "Software Engineer",
-    "decision": "reject",
-    "score": 7,
+    "score": 14,
     "llm_score": 10,
     "llm_recommendation": "reject",
     "mandatory_met": false,
-    "tokens": 1458
+    "tokens": 1555
+  },
+  {
+    "run": 2,
+    "name": "John W. Smith",
+    "position": "AI Engineer",
+    "decision": "reject",
+    "score": 6,
+    "llm_score": 5,
+    "llm_recommendation": "reject",
+    "mandatory_met": false,
+    "tokens": 1726
+  },
+  {
+    "run": 3,
+    "name": "Alex Carter",
+    "position": "Software Engineer",
+    "decision": "advance",
+    "score": 100,
+    "llm_score": 100,
+    "llm_recommendation": "advance",
+    "mandatory_met": true,
+    "tokens": 1633
+  },
+  {
+    "run": 3,
+    "name": "Alex Carter",
+    "position": "AI Engineer",
+    "decision": "reject",
+    "score": 50,
+    "llm_score": 35,
+    "llm_recommendation": "reject",
+    "mandatory_met": false,
+    "tokens": 1785
+  },
+  {
+    "run": 3,
+    "name": "John W. Smith",
+    "position": "Software Engineer",
+    "decision": "reject",
+    "score": 7,
+    "llm_score": 5,
+    "llm_recommendation": "reject",
+    "mandatory_met": false,
+    "tokens": 1537
   },
   {
     "run": 3,
@@ -129,6 +129,6 @@
     "llm_score": 5,
     "llm_recommendation": "reject",
     "mandatory_met": false,
-    "tokens": 1606
+    "tokens": 1696
   }
 ]

@@ -217,3 +217,12 @@ def test_recorded_results():
                 ("John W. Smith", "Software Engineer"): "reject", ("John W. Smith", "AI Engineer"): "reject"}
     assert len(rows) == 12
     assert all(expected[(r["name"], r["position"])] == r["decision"] for r in rows)
+
+
+def test_timeline_note_goes_to_concerns_without_changing_decision():
+    flagged = judged(timeline={"consistent": False, "note": "7+ years but graduated 2024"}, concerns=["other"])
+    result = run_decide(json.dumps(flagged))
+    assert result["decision"] == "advance" and result["timeline_flag"] is True
+    assert result["concerns"].splitlines() == ["Timeline: 7+ years but graduated 2024", "other"]
+    ok = run_decide(json.dumps(judged(timeline={"consistent": True, "note": ""})))
+    assert ok["timeline_flag"] is False and ok["concerns"] == ""

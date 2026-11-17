@@ -1,0 +1,56 @@
+[
+  {
+    "format": "zapier markdown",
+    "run": 1,
+    "decision": "advance",
+    "score": 100,
+    "mandatory": "met",
+    "timeline_flag": true,
+    "concerns": "Timeline: Resume claims 7+ years of experience, but Bachelor's degree was completed in 2024 and today's date is 2026, suggesting most experience was gained before or during the degree. This is possible but should be verified."
+  },
+  {
+    "format": "zapier markdown",
+    "run": 2,
+    "decision": "advance",
+    "score": 100,
+    "mandatory": "met",
+    "timeline_flag": true,
+    "concerns": "Timeline: Candidate claims 7+ years of experience but graduated in 2024; as of November 2026, this would require starting relevant experience in or before 2019, which is possible if experience was gained before or during the degree, but should be verified.\nTimeline of 7+ years of experience before 2024 graduation may require clarification."
+  },
+  {
+    "format": "zapier markdown",
+    "run": 3,
+    "decision": "advance",
+    "score": 100,
+    "mandatory": "met",
+    "timeline_flag": true,
+    "concerns": "Timeline: Resume claims 7+ years of experience, but Bachelor's degree was completed in 2024 and today's date is 2026, suggesting experience was gained before or during the degree. This is possible, but should be verified."
+  },
+  {
+    "format": "plain text",
+    "run": 1,
+    "decision": "advance",
+    "score": 100,
+    "mandatory": "met",
+    "timeline_flag": true,
+    "concerns": "Timeline: Claims 7+ years of experience but graduated in 2024; as of November 2026, this would require all experience to have been gained before or during the degree, which is possible but should be verified."
+  },
+  {
+    "format": "plain text",
+    "run": 2,
+    "decision": "advance",
+    "score": 100,
+    "mandatory": "met",
+    "timeline_flag": true,
+    "concerns": "Timeline: Claims 7+ years of experience but graduated in 2024; as of November 2026, this would require starting relevant experience in or before 2019, which is possible if experience was gained before or during the degree, but should be verified."
+  },
+  {
+    "format": "plain text",
+    "run": 3,
+    "decision": "advance",
+    "score": 100,
+    "mandatory": "met",
+    "timeline_flag": true,
+    "concerns": "Timeline: Resume claims 7+ years of experience, but Bachelor's degree was completed in 2024. As of November 2026, this would require all experience to have started by 2019 or earlier, which is possible if experience was gained before or during the degree, but should be verified."
+  }
+]

@@ -18,7 +18,8 @@ Input Data (set these in the Zapier step):
     company          optional, defaults to "SmartHire"
 
 Output: decision, score, llm_score, llm_recommendation, mandatory_met, summary, strengths,
-concerns, email_to, email_subject, email_body, evaluation_json.
+concerns (the judge's timeline note first, when it found the dates inconsistent), timeline_flag,
+email_to, email_subject, email_body, evaluation_json.
 """
 import json
 import re
@@ -60,6 +61,14 @@ def validate(data):
     score = data.get("overall_score")
     if not isinstance(score, (int, float)) or not 0 <= score <= 100:
         raise JudgeOutputError("'overall_score' must be a number from 0 to 100")
+
+
+def timeline_concern(data):
+    """The judge's timeline note when it found the dates inconsistent, else ''."""
+    timeline = data.get("timeline")
+    if isinstance(timeline, dict) and timeline.get("consistent") is False:
+        return f"Timeline: {timeline.get('note') or 'dates do not add up'}"
+    return ""
 
 
 def score_of(data):
@@ -108,8 +117,13 @@ def main(data):
     except JudgeOutputError as e:
         return {**base, "decision": "needs_review", "score": "", "llm_score": "", "llm_recommendation": "",
                 "mandatory_met": "", "summary": f"Judge output could not be used: {e}",
-                "strengths": "", "concerns": "", "email_subject": "", "email_body": "", "evaluation_json": ""}
+                "strengths": "", "concerns": "", "timeline_flag": "", "email_subject": "", "email_body": "",
+                "evaluation_json": ""}
     decision, score, mandatory_met = decide(judged, threshold)
+    concerns = list(judged.get("concerns") or [])
+    timeline = timeline_concern(judged)
+    if timeline:
+        concerns.insert(0, timeline)
     subject, body = email_for(decision, name, title, company, judged)
     return {
         **base,
@@ -120,7 +134,8 @@ def main(data):
         "mandatory_met": mandatory_met,
         "summary": judged.get("summary", ""),
         "strengths": "\n".join(judged.get("strengths") or []),
-        "concerns": "\n".join(judged.get("concerns") or []),
+        "concerns": "\n".join(concerns),
+        "timeline_flag": bool(timeline),
         "email_subject": subject,
         "email_body": body,
         "evaluation_json": json.dumps(judged, ensure_ascii=False),

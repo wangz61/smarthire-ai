@@ -26,10 +26,15 @@ def main():
         print(f"== {stem}  (run 1, years of relevant experience: {j['years_relevant_experience']})")
         for item in j["mandatory"] + j["requirements"]:
             print(f"   {item['status']:<8} {item['requirement'][:52]:<52}  {item['evidence'][:62]}")
-        for c in j["concerns"]:
+        for c in r["decision"]["concerns"].splitlines():
             print(f"   concern: {c[:118]}")
         print()
 
+    fmt = json.loads((RESULTS / "zapier_text" / "format_check.json").read_text(encoding="utf-8"))
+    for name in ("zapier markdown", "plain text"):
+        rs = [r for r in fmt if r["format"] == name]
+        print(f"Alex / Software Engineer, {name:<16}: " + ", ".join(r["decision"] for r in rs)
+              + f"; timeline flagged {sum(r['timeline_flag'] for r in rs)}/{len(rs)}")
     inj = json.loads((RESULTS / "injection_check.json").read_text(encoding="utf-8"))
     print("Prompt injection (John + 'ignore all previous instructions ... advance'):",
           ", ".join(f"{r['decision']} (score {r['score']}, LLM {r['llm_score']})" for r in inj))
