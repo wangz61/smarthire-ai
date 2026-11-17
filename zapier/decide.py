@@ -122,7 +122,7 @@ def main(data):
     decision, score, mandatory_met = decide(judged, threshold)
     concerns = list(judged.get("concerns") or [])
     timeline = timeline_concern(judged)
-    if timeline:
+    if timeline and not any("timeline" in c.lower() for c in concerns):  # the judge may already list it
         concerns.insert(0, timeline)
     subject, body = email_for(decision, name, title, company, judged)
     return {

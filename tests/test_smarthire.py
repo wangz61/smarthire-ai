@@ -226,3 +226,11 @@ def test_timeline_note_goes_to_concerns_without_changing_decision():
     assert result["concerns"].splitlines() == ["Timeline: 7+ years but graduated 2024", "other"]
     ok = run_decide(json.dumps(judged(timeline={"consistent": True, "note": ""})))
     assert ok["timeline_flag"] is False and ok["concerns"] == ""
+
+
+def test_timeline_concern_not_duplicated():
+    flagged = judged(timeline={"consistent": False, "note": "7+ years but graduated 2024"},
+                     concerns=["Timeline: 7+ years claimed but degree in 2024"])
+    result = run_decide(json.dumps(flagged))
+    assert result["timeline_flag"] is True
+    assert result["concerns"].splitlines() == ["Timeline: 7+ years claimed but degree in 2024"]
