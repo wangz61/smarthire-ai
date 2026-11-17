@@ -234,3 +234,45 @@ def test_timeline_concern_not_duplicated():
     result = run_decide(json.dumps(flagged))
     assert result["timeline_flag"] is True
     assert result["concerns"].splitlines() == ["Timeline: 7+ years claimed but degree in 2024"]
+
+
+# ---- saving the evaluation (save_evaluation.py) ---------------------------------------------------------
+
+import save_evaluation as se  # noqa: E402
+
+
+def test_save_signature_matches_get_requirements():
+    body = json.dumps({"TableName": "t", "Item": {"submission_id": {"S": "1"}}})
+    args = ("AK", "SK", "us-east-1", "dynamodb.us-east-1.amazonaws.com", se.TARGET, body, NOW)
+    assert se.sign(*args) == gr.sign(*args)          # the two pasted steps share one signer
+
+
+def test_build_item_types():
+    item = se.build_item({"aws_access_key": "AK", "aws_secret_key": "SK", "aws_region": "us-east-1",
+                          "table": "t", "submission_id": 42, "name": "Alex Carter", "score": "100",
+                          "llm_score": "98.5", "timeline_flag": "true", "mandatory_met": "False",
+                          "concerns": "", "summary": "  ok  "})
+    assert item == {"submission_id": {"S": "42"}, "name": {"S": "Alex Carter"}, "score": {"N": "100"},
+                    "llm_score": {"N": "98.5"}, "timeline_flag": {"BOOL": True},
+                    "mandatory_met": {"BOOL": False}, "summary": {"S": "ok"}}
+    with pytest.raises(ValueError, match="submission_id"):
+        se.build_item({"submission_id": " "})
+
+
+def test_put_item_request():
+    sent = {}
+
+    def post(url, data, headers, timeout):
+        sent.update(url=url, body=json.loads(data), headers=headers)
+        return FakeResponse(200, {})
+
+    out = se.put_item({"aws_access_key": "AK", "aws_secret_key": "SK", "aws_region": "us-west-2",
+                       "table": "evals", "submission_id": "r1", "decision": "advance"}, NOW, post)
+    assert out == {"saved": True, "table": "evals", "submission_id": "r1", "attributes": 2}
+    assert sent["url"] == "https://dynamodb.us-west-2.amazonaws.com/"
+    assert sent["headers"]["x-amz-target"] == "DynamoDB_20120810.PutItem"
+    assert sent["body"] == {"TableName": "evals",
+                            "Item": {"submission_id": {"S": "r1"}, "decision": {"S": "advance"}}}
+    with pytest.raises(RuntimeError, match="400"):
+        se.put_item({"aws_access_key": "AK", "aws_secret_key": "SK", "submission_id": "r1"}, NOW,
+                    lambda *a, **k: FakeResponse(400, {"message": "bad"}))

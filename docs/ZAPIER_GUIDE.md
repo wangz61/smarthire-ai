@@ -126,18 +126,24 @@ Zapier 的界面会更新，按钮和字段名可能与本文略有出入，按�
 - **Code**：粘贴 `E:\Project\SmartHireAI\zapier\decide.py` 的全部内容。
 - 测试后应得到：`decision` = `advance`、`score` = `100`，以及 `email_subject`、`email_body` 等字段。
 
-### 步骤 8｜Amazon DynamoDB → Create Item（保存评估记录）
-- 连接 AWS，使用同一组 Access key 和 Secret，区域选 `us-east-1`。
-- **Table**：`smarthire_evaluations`。
-- 填写以下属性。如果界面要求整条 Item 的 JSON，就按下面的键值写成 `{"submission_id": "...", ...}`：
+### 步骤 8｜Code by Zapier → Run Python（保存评估记录到 DynamoDB）
+Zapier 已经没有 Amazon DynamoDB 应用了，所以和步骤 5 一样，用 Code 步骤直接调用 DynamoDB 的 PutItem 接口。
 
-| 属性 | 值 |
+- **Input Data**：
+
+| 名字 | 值 |
 | --- | --- |
-| `submission_id` | 步骤 1 的 `Response ID`；没有就用 `{{zap_meta_id}}` |
-| `name` / `email` / `position` | 步骤 1 的对应字段 |
-| `decision` / `score` / `llm_score` / `summary` / `concerns` | 步骤 7 的对应字段 |
+| `aws_access_key` / `aws_secret_key` | 与步骤 5 相同 |
+| `aws_region` | `us-east-1` |
+| `table` | `smarthire_evaluations` |
+| `submission_id` | 步骤 1 的 `Response ID`；没有就输入 `{{zap_meta_id}}` |
+| `name` / `email` / `position` | 步骤 7 的 `Name` / `Email To` / `Title` |
+| `decision` / `score` / `llm_score` / `timeline_flag` | 步骤 7 的对应字段 |
+| `summary` / `concerns` | 步骤 7 的对应字段 |
 | `evaluated_at` | `{{zap_meta_human_now}}` |
-| `evaluation_json` | 步骤 7 的 `evaluation_json` |
+
+- **Code**：粘贴 `E:\Project\SmartHireAI\zapier\save_evaluation.py` 的全部内容。
+- 测试后应得到：`saved` = `true`、`table` = `smarthire_evaluations`。测试会真的写入一条记录。
 
 ### 步骤 9｜Paths by Zapier（分流和发邮件）
 - 添加 **Paths**，建两条路径。

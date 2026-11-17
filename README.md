@@ -27,12 +27,16 @@ Google Form ──► [1] Google Forms: New Form Response        name, email, po
                 [5] Code by Zapier: get_requirements.py     DynamoDB GetItem, SigV4-signed
                 [6] ChatGPT (OpenAI): Send Prompt           judge_prompt.md -> JSON verdict
                 [7] Code by Zapier: decide.py               validate JSON, decide, write the email
-                [8] Amazon DynamoDB: Create Item            log the evaluation
+                [8] Code by Zapier: save_evaluation.py      DynamoDB PutItem, SigV4-signed
                 [9] Paths: advance -> Gmail / reject -> Gmail
 ```
 
 Design choices:
-- **Reading DynamoDB from a Code step.** Zapier's DynamoDB app can create items but cannot read them. So `get_requirements.py` calls the `GetItem` API directly and signs the request with AWS Signature V4. It uses only the standard library and `requests`, which is all a Code step is guaranteed to have. The signature is tested byte for byte against botocore.
+- **DynamoDB through Code steps.** Zapier's DynamoDB app could only create items, never read them, and Zapier's app directory no longer lists it at all. So two Code steps call the DynamoDB API directly, with requests signed using AWS Signature V4:
+  - `get_requirements.py` calls `GetItem`;
+  - `save_evaluation.py` calls `PutItem`.
+  
+  They use only the standard library and `requests`, which is all a Code step is guaranteed to have. The signature is tested byte for byte against botocore.
 - **The LLM judges, but code decides.** The judge marks every requirement `met`, `partial` or `not_met` and quotes evidence for each. `decide.py` then applies a fixed rule:
   - any mandatory requirement not `met` → **reject**;
   - otherwise, a score of 70 or more → **advance**;
@@ -97,10 +101,10 @@ pytest
 
 ## Tests
 
-The 27 tests cover:
+The 31 tests cover:
 - `.docx` text extraction, compared with python-docx;
 - SigV4 signing, compared with botocore;
-- DynamoDB marshalling, the request, and error handling;
+- DynamoDB marshalling, the GetItem and PutItem requests, and error handling;
 - the CloudShell script's quoting and the IAM policy;
 - the decision rule and the threshold boundary, including that the LLM's recommendation cannot override the rule;
 - the timeline note going to the concerns without changing the decision;
@@ -116,6 +120,7 @@ The 27 tests cover:
 zapier/get_requirements.py   Code step 5: DynamoDB GetItem with SigV4
 zapier/judge_prompt.md       Step 6: judge instructions and user message
 zapier/decide.py             Code step 7: validate, decide, compose the email
+zapier/save_evaluation.py    Code step 8: DynamoDB PutItem with SigV4
 dynamodb/                    build_setup.py -> setup.sh, iam.sh, iam_policy.json, items/
 data/                        job_requirements.json and the two resumes
 simulate.py                  local run of the Zap

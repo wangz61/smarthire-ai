@@ -12,7 +12,7 @@
 | X-1 | P0 | 提取简历文本：Google Drive 取到上传的文件 → Files by Zapier「Text From File」 |
 | D-1 | P0 | DynamoDB 表 `smarthire_job_requirements`，分区键 `position`；写入作业给的两个岗位（必备条件、加分项、通过阈值） |
 | D-2 | P0 | Zap 中读取岗位要求。Zapier 的 DynamoDB 集成只有写入（Create Item）和新条目触发，没有读取动作，所以用 Code by Zapier（Python，仅标准库 + requests）以 SigV4 签名调用 DynamoDB `GetItem` |
-| D-3 | P1 | 评估结果用 Zapier 的 DynamoDB「Create Item」写入 `smarthire_evaluations`，便于追踪 |
+| D-3 | P1 | 评估结果写入 `smarthire_evaluations`，便于追踪。Zapier 已经下架 DynamoDB 应用，所以同样用 Code 步骤（`save_evaluation.py`，SigV4 签名的 PutItem）写入 |
 | J-1 | P0 | 评委提示词：逐条判断每项要求 met / partial / not_met 并给证据；单独判断必备条件；给出 0–100 总分和建议；只输出 JSON |
 | J-2 | P0 | 决策由代码而不是 LLM 最终决定：任一必备条件未满足 → reject；否则总分 ≥ 阈值（70）→ advance；JSON 无效 → 转人工（reject 邮件不发，标记 needs_review） |
 | E-1 | P0 | Paths by Zapier 分两路：advance → Gmail 发面试邀请；reject → Gmail 发拒绝信。邮件内容由决策步骤生成 |
@@ -31,7 +31,7 @@ Google Form ──► [1] Google Forms: New Form Response
                 [5] Code by Zapier: get_requirements.py       → DynamoDB GetItem（SigV4）
                 [6] ChatGPT (OpenAI): Send Prompt             → 评委 JSON
                 [7] Code by Zapier: decide.py                 → decision、score、邮件主题和正文
-                [8] Amazon DynamoDB: Create Item              → smarthire_evaluations
+                [8] Code by Zapier: save_evaluation.py        → DynamoDB PutItem（SigV4）
                 [9] Paths: advance → Gmail Send Email / reject → Gmail Send Email
 ```
 
