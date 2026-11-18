@@ -49,3 +49,32 @@ Google Form ──► [1] Google Forms: New Form Response
 - P0：数据与表结构、Code 步骤、提示词、决策、本地模拟、指南
 - P1：测试、评估记录表
 - P2：提交文档、GitHub（Zapier 截图由用户补充）
+
+---
+
+# PRD · Homework 0-10：API Gateway + Lambda + Zapier Webhooks（在 0-9 项目上继续）
+
+## 1. 目标
+按课件第 6 页的架构，第 4 步「Fetch Job Requirement」改为 **Zapier Webhooks (GET) → API Gateway → Lambda → DynamoDB**。这样 Zap 里不再保存 AWS 密钥，也不需要 SigV4 代码；DynamoDB 只有 Lambda 的 IAM 角色能访问。另外写出简历里的项目描述（模块 3）。
+
+## 2. 需求
+
+| ID | 优先级 | 需求 |
+| --- | --- | --- |
+| A-1 | P0 | Lambda `smarthire-api`（Python 3.12，boto3）：`GET /requirements?position=...` 返回岗位要求，字段与 0-9 的 `get_requirements.py` 输出一致（title、pass_threshold、requirements_block 等），所以后面的步骤不用改 |
+| A-2 | P0 | API Gateway HTTP API，路由全部转给这个 Lambda；Lambda 用 `x-api-key` 请求头校验共享密钥（存在 Lambda 环境变量里，用 constant-time 比较） |
+| A-3 | P0 | Zapier 第 5 步换成 **Webhooks by Zapier → GET** |
+| A-4 | P1 | `POST /evaluations`：保存评估结果；Zapier 第 8 步换成 **Webhooks by Zapier → POST**，Zap 中彻底去掉 AWS 密钥 |
+| A-5 | P1 | `GET /rankings?position=...`：按分数排序列出某岗位的候选人（对应项目名里的 Candidate Ranking） |
+| A-6 | P0 | CloudShell 一键部署脚本：IAM 角色（最小权限：requirements 表 GetItem，evaluations 表 PutItem/Scan）、Lambda、HTTP API、调用权限；可以重复运行 |
+| A-7 | P0 | pytest：路由、鉴权、404/400、数字/布尔转换、排名排序 |
+| A-8 | P0 | 简历项目描述（英文 bullet，内容与实际实现一致） |
+| A-9 | P0 | 提交 Word：架构、代码、部署、Zapier 配置、测试和截图 |
+
+## 3. 错误处理
+- 没有或错误的 `x-api-key` → 401；缺少 `position` → 400；岗位不存在 → 404；未知路由 → 404。
+- POST 正文可以是 JSON，也可以是表单编码；API Gateway 标记为 base64 时先解码。
+
+## 4. 验收
+- `curl` 调 `GET /requirements?position=Software Engineer` 返回 Software Engineer 的要求；不带 key 返回 401。
+- Zapier 中第 5 步（Webhooks GET）和第 8 步（Webhooks POST）测试成功，后续步骤结果不变。

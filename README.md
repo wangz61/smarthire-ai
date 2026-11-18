@@ -114,6 +114,29 @@ The 31 tests cover:
 - prompt placeholders;
 - the recorded results.
 
+## Homework 0-10: API Gateway + Lambda + Zapier Webhooks
+
+Steps 5 and 8 now call a serverless API through **Webhooks by Zapier** instead of signing DynamoDB
+requests in Code steps, so the Zap holds no AWS credentials:
+
+```
+Zapier Webhooks (GET/POST) --x-api-key--> API Gateway HTTP API --> Lambda smarthire-api --IAM role--> DynamoDB
+```
+
+| Route | Used by | Does |
+| --- | --- | --- |
+| `GET /requirements?position=Software Engineer` | Zap step 5 (Webhooks GET) | GetItem, flattened exactly like the old Code step, so steps 6-7 are unchanged |
+| `POST /evaluations` | Zap step 8 (Webhooks POST, JSON) | PutItem; numbers and booleans typed, empty fields skipped |
+| `GET /rankings?position=software_engineer` | recruiter / curl | candidates for a role ranked by score |
+
+- `lambda/handler.py` is the function (Python 3.12, boto3). It checks the `x-api-key` header in constant time.
+- `lambda/build_deploy.py` generates `lambda/deploy.sh`, a one-paste CloudShell script. It creates a
+  least-privilege role (GetItem on requirements; PutItem/Scan on evaluations), the function, and an HTTP
+  API, then runs a smoke test. Running it again is safe.
+- `tests/test_lambda.py` has 14 tests: routes, auth, errors, typing, pagination, ranking, and that
+  `deploy.sh` embeds the current handler and parses as bash.
+- Setup steps (Chinese) are in [docs/HW10_GUIDE.md](docs/HW10_GUIDE.md); the resume entry is in [docs/RESUME.md](docs/RESUME.md).
+
 ## Layout
 
 ```
@@ -129,4 +152,6 @@ format_check.py              Zapier's Markdown resume text vs plain text
 report.py                    prints the recorded results
 results/                     run_1..3/, outbox/ (emails), summary.json, injection_check.json, zapier_text/
 docs/ZAPIER_GUIDE.md         build guide for Zapier, Google Forms and AWS
+lambda/                      hw0-10: handler.py (API), build_deploy.py -> deploy.sh
+docs/HW10_GUIDE.md           hw0-10 deploy + Webhooks steps; docs/RESUME.md resume entry
 ```
